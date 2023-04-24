@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "electron": "^24.1.2"
+  },
+  "name": "nex-weather",
+  "version": "1.0.0",
+  "description": "Simple weather app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder",
+    "watch": "nodemon --exec electron ."
+  },
+  "author": "Rakibul Hasan",
+  "license": "ISC"
+}

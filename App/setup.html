@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="setup.css">
+    <title>Setup</title>
+</head>
+<body>
+    <div class="location">
+        <div class="loc_input">
+            <input type="text" name="" id="loc" placeholder="Search Location">
+            <button  onfocus="playSugg()" class="ok"><img src="images/search.png"></button>
+        </div>
+        <div id="sugg" class="suggestion">
+            <ul class="list">
+            </ul>
+        </div>
+    </div>
+    <div class="temp">
+        <p>Temperature Unit: </p>
+            <div class="units">
+                <p class="farenite">°F</p>
+                <p class="celsius">°C</p>
+            </div>
+        
+    </div>
+    <div class="confirm-div">
+        <img id="next" class="confirm" src="images/next.png">
+    </div>
+
+    <script src="setup.js"></script>
+</body>
+</html>

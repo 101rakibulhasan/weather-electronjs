@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+*{
+    margin:0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    background-image: url("images/background.jpg");
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+}
+
+.location{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loc_input{
+    width: 100%;
+    height: 4em;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.loc_input input{
+    width: 90%;
+    height: 100%;
+    border: 0;
+    text-align: center;
+    filter: drop-shadow(0px 1px 5px rgba(122, 122, 122, 0.505));
+    font-size: 30px;
+    background-color: transparent;
+}
+
+.loc_input button{
+    width: 10%;
+    min-width: 70px;
+    height: 100%;
+    background-color: transparent;
+    border: 0;
+    border-left: 2px solid rgb(220, 220, 220);
+}
+
+.loc_input button img{
+    width: 30px;
+    height: 30px;
+}
+
+.loc_input input:focus{
+    outline: none;
+}
+
+.suggestion{
+    width: 40vw;
+    max-width: 40%;
+    min-width: 260px;
+    margin: 10px;
+   /*  height: 60vh; */
+    height: 0;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.suggestion ul{
+    list-style: none;
+    width: 100%;
+}
+
+.suggestion ul li{
+    border-bottom: 1px solid rgb(217, 217, 217);
+    padding-top:10px;
+    padding-bottom:10px;
+    width: 100%;
+    text-align: center;
+}
+
+.suggestion ul li:hover{
+    background-color: rgb(223, 255, 255);
+}
+
+.temp{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.temp button{
+    font-size: 20px;
+}
+
+.temp button{
+    margin-left: 10px;
+    background-color: transparent;
+    border: 0;
+    color: white;
+}
+
+.units{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.units p{
+    margin: 10px;
+}
+
+.confirm-div{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.confirm-div img{
+    width: 70px;
+    height: 70px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    margin: 5px;
+    background: #7a7a7a;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #000000;
+  }
+
+  @keyframes open_sugg {
+    from  {height: 0}
+    to {height: 20em}
+  }
+
+  @media screen and (max-width: 800px) {
+    .loc_input{
+        height: 3em;
+    }
+    
+    .loc_input input{
+        font-size: 18px;
+    }
+    .loc_input button{
+        min-width: 50px;
+    }
+
+    .loc_input button img{
+        width: 20px;
+        height: 20px;
+    }
+  }
+
