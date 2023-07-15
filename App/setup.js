@@ -1,16 +1,30 @@
 const api = "http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=ErjXgI4B5q8sahrz5TR3qCAuxHbqhRHv&q=";
- 
+
+var loc = window.location.pathname;
+var dir1 = loc.substring(0, loc.lastIndexOf('/'));
+var dir = dir1.substring(0, dir1.lastIndexOf('/')) + "/setting.json";
+
 ok = document.querySelector(".ok");
 query = document.getElementById("loc");
 ok.addEventListener("click", () => {
+        checkoffline();
         makesugg();
 })
 
+function checkoffline(){
+        if(navigator.onLine)
+        {
+                
+        }else{
+                ipcRenderer.send("checkoffline");
+        }
+}
+
 query.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
-                console.log("fuck");
                 makesugg();
                 playSugg();
+                checkoffline();
         }
 })
 
@@ -21,11 +35,9 @@ function makesugg(){
                 return response.json();
         })
         .then(data => {
-                console.log(data);
                 document.querySelector(".list").innerHTML = ""; 
                 for (let i of data)
                 {
-                        console.log(i.LocalizedName)
                         let listitem = document.createElement("li");
                         listitem.classList.add("list-items");
                         listitem.style.cursor = "pointer";
@@ -45,55 +57,51 @@ function displayNames(value,pos) {
 }
 
 function playSugg(){
-        console.log("fuck")
         const sugg = document.getElementById("sugg");
         sugg.style.animation = 'open_sugg 2s ease forwards'
 }
 
 done = document.querySelector(".confirm");
 done.addEventListener("click", () => {
-        fetch("./setting.json")
-                    .then(response => {
-                            return response.json();
-                    })
-                    .then(data => {
-                            lockey = data.loc_key;
-
-                            if(lockey != -1)
-                                {
-                                        ipcRenderer.send('parseJSON_isSetup',1);
-                                        ipcRenderer.send('go-main');
-                                }else{
-                                        ipcRenderer.send('parseJSON_isSetup',0);
-                                }
-                    })
+        fetch(dir)
+        .then(response => {
+                return response.json();
+        })
+        .then(data => {
+                lockey = data.loc_key;
+                if(lockey != -1)
+                {
+                        ipcRenderer.send('parseJSON_isSetup',1);
+                        ipcRenderer.send('go-main');
+                }else{
+                        ipcRenderer.send('parseJSON_isSetup',0);
+                }
+        })
 })
 
 cel = document.querySelector(".celsius");
 far = document.querySelector(".farenite");
 
-fetch("./setting.json")
-                    .then(response => {
-                            return response.json();
-                    })
-                    .then(data => {
-                        if(data.unit == "C"){
-                                cel.style.borderBottom = "1px solid white";
-                        }else
-                        {
-                                far.style.borderBottom = "1px solid white";
-                        }
-                    })
+fetch(dir)
+        .then(response => {
+                return response.json();
+        })
+        .then(data => {
+        if(data.unit == "C"){
+                cel.style.borderBottom = "1px solid white";
+        }else
+        {
+                far.style.borderBottom = "1px solid white";
+        }
+        })
 
-far.addEventListener("click", () => {
-        
+far.addEventListener("click", () => {  
         far.style.borderBottom = "1px solid white";
         cel.style.borderBottom = "0";
         ipcRenderer.send('parseJSON_unit',"F");
 })
 
 cel.addEventListener("click", () => {
-
         cel.style.borderBottom = "1px solid white";
         far.style.borderBottom = "0";
         ipcRenderer.send('parseJSON_unit',"C");

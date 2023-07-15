@@ -1,0 +1,6 @@
+npx electron-packager . --appname="Weather" --platform=all --arch=x64 --executable-name="Weather" --icon="images/icon.ico" --app-bundle-id="nex.app.weather"
+
+setting.json must be in resources/setting.json
+
+build windows: package.jsom -> "build": "electron-builder build --win portable",
+build linux: package.jsom -> "build": "electron-builder build --linux",

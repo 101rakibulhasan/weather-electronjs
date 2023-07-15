@@ -1,17 +1,42 @@
 {
-  "dependencies": {
-    "electron": "^24.1.2"
+  "devDependencies": {
+    "electron": "^24.1.2",
+    "electron-builder": "^24.3.0"
   },
-  "name": "nex-weather",
+  "name": "Weather",
   "version": "1.0.0",
-  "description": "Simple weather app",
+  "description": "Your personal weather advisor",
   "main": "app.js",
+  "icon": "images/icon.ico",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron .",
-    "build": "electron-builder",
+    "build": "electron-builder build --win portable",
     "watch": "nodemon --exec electron ."
   },
+  "build": {
+    "productName": "Weather",
+    "appId": "nex.apps.weather",
+    "copyright": "Copyright © 2030 NEXINA",
+    "win": {
+      "publisherName": "Rakibul Hasan",
+      "icon": "images/icon.ico",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "linux": {
+      "icon": "images/icon.ico",
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ]
+    }
+  },
   "author": "Rakibul Hasan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "electron-packager": "^17.1.1"
+  }
 }
